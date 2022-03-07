@@ -17,6 +17,7 @@ model user {
   githubUrl String @default("https://github.com/Elmge") @map("github_url")
   emailUrl String @default("suemor233@outlook.com") @map("email_url")
   twitterUrl String @default("https://twitter.com/Suemor233") @map("twitter_url")
+  avatar String @default("https://suemor.oss-cn-beijing.aliyuncs.com/img/89030875.jpeg")
   createAt DateTime @default(now()) @map("create_at")
   updateAt DateTime @updatedAt @map("update_at")
 }

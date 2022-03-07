@@ -25,4 +25,9 @@ export class CreateUserDto {
   @IsOptional()
   twitterUrl: string;
 
+  @ApiProperty({ description: "头像地址",example: "http://example.com" })
+  @IsUrl({ require_protocol: true }, { message: "请更正为正确的网址" })
+  @IsOptional()
+  avatar: string;
+
 }
