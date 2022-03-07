@@ -13,6 +13,8 @@ lerna-debug.log*
 
 # OS
 .DS_Store
+.vscode
+.idea
 
 # Tests
 /coverage
