@@ -12,7 +12,6 @@ async function bootstrap() {
     .setTitle('suemor博客API')
     .setDescription('这里是suemor博客的swagger文档')
     .setVersion('1.0')
-    .addTag('article')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
