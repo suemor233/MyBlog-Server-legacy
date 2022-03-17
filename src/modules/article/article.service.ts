@@ -13,8 +13,16 @@ export class ArticleService {
     return this.prismaService.article.create({data:createArticleDto})
   }
 
-  findAll() {
-    return this.prismaService.article.findMany({where:{}})
+   async findAll(pageNum:string,pageSize:string) {
+
+    const total = await this.prismaService.article.count({select:{_all:true}})
+    const article = await this.prismaService.article.findMany({where:{},orderBy:{createAt:'desc'},  skip:(parseInt(pageNum)- 1) * parseInt(pageSize) , take: parseInt(pageSize)})
+    const articleList = {
+      total:total._all,
+      article
+    }
+    console.log(article)
+    return articleList
   }
 
   findOne(id: string) {
