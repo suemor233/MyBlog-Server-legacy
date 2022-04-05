@@ -15,6 +15,16 @@ export class UserController {
   }
 
 
+  @Post('login')
+  login(@Body() createUserDto: CreateUserDto) {
+    return this.userService.login(createUserDto);
+  }
+
+  @Post('register')
+  register(@Body() createUserDto: CreateUserDto) {
+    return this.userService.register(createUserDto);
+  }
+
   @Get()
   findOne(@Query('username') username: string) {
     return this.userService.findOne(username);

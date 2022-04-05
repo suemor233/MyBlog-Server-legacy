@@ -6,9 +6,15 @@ export class CreateUserDto {
   @IsOptional()
   userName: string;
 
+
+  @ApiProperty({ description: "密码", example: "123456" })
+  @IsOptional()
+  password: string;
+
   @ApiProperty({ required:false,description: "自我介绍", example: "hello 你好 我是XXX" })
   @IsOptional()
   introduce: string;
+
 
   @ApiProperty({ description: "github地址", example: "http://example.com" })
   @IsUrl({ require_protocol: true }, { message: "请更正为正确的网址" })

@@ -15,9 +15,11 @@ async function bootstrap() {
     .setTitle('suemor博客API')
     .setDescription('这里是suemor博客的swagger文档')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, document);
   await app.listen(3000);
+  console.log('MyBlog-Server running at http://localhost:3000 ')
 }
 bootstrap();

@@ -13,6 +13,9 @@ datasource db {
 model user {
   id         String   @id @unique @default(uuid())
   userName   String   @unique @default("Suemor") @map("user_name")
+  password   String   @default("123456") @map("user_password")
+  token      String   @default("token") @map("user_token")
+  salt      String    @default("asdasd") @map("user_salt")
   introduce  String   @default("所谓自由就是可以说二加二等于四的自由")
   githubUrl  String   @default("https://github.com/Elmge") @map("github_url")
   emailUrl   String   @default("suemor233@outlook.com") @map("email_url")
