@@ -16,8 +16,11 @@ export class UserService {
     });
   }
 
-  findOne(userName: string) {
-    return this.prismaService.user.findUnique({ where: { userName } });
+  async findOne(userName: string) {
+    const user = await this.prismaService.user.findUnique({ where: { userName } });
+    delete user.password
+    delete user.salt
+    return user
   }
 
   async login(createUserDto: CreateUserDto) {
@@ -45,15 +48,18 @@ export class UserService {
     }
 
     const token = await this.certificate(user)
-    return token
+    delete user.password
+    delete user.salt
+    user['token'] = token
+
+    return user
   }
 
   // 生成 token
   async certificate(user: CreateUserDto) {
-    const payload = {
-      id: user.password,
-      nickname: user.userName,
 
+    const payload = {
+      userName:user.userName
     };
     const token = this.jwtService.sign(payload);
     return token

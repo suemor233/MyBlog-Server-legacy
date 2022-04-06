@@ -15,8 +15,7 @@ export class ArticleController {
     return this.articleService.create(createArticleDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
+
   @Get()
   async findAll(@Query('pageNum') pageNum:string,@Query('pageSize')pageSize:string) {
     return  this.articleService.findAll(pageNum,pageSize);
