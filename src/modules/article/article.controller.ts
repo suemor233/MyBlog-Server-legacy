@@ -16,9 +16,10 @@ export class ArticleController {
   }
 
 
+
   @Get()
   async findAll(@Query('pageNum') pageNum:string,@Query('pageSize')pageSize:string) {
-    return  this.articleService.findAll(pageNum,pageSize);
+    return this.articleService.findAll(pageNum,pageSize);
   }
 
   @Get(':id')
@@ -26,6 +27,19 @@ export class ArticleController {
     return this.articleService.findOne(id);
   }
 
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  @Get('/delete/:id')
+  deleteArticleById(@Param('id') id: string) {
 
+    return this.articleService.deleteOne(id);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  @Post('/delete')
+  deleteArticles(@Body() ids:string[]) {
+    return this.articleService.deleteArticles(ids);
+  }
 
 }

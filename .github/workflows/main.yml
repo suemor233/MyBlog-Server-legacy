@@ -4,17 +4,24 @@ on:
     branches:
       - master # 这里表示push到main分支就会触发流程
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [16]
     steps:
-      # 这是github官方的一个action，用于clone该仓库的源码到工作流中，
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
         with:
-          persist-credentials: false
+          version: 7.0.0-rc.2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
       - name: Build
         run: |
-          npm install  # 安装依赖
-          npm run build  # 执行打包
+          pnpm install
+          pnpm run build  # 执行打包
 
