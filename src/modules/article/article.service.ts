@@ -10,6 +10,7 @@ export class ArticleService {
   }
 
   create(createArticleDto: CreateArticleDto) {
+
     return this.prismaService.article.create({ data: createArticleDto });
   }
 
@@ -29,7 +30,6 @@ export class ArticleService {
       };
     } else {
       const article = await this.prismaService.article.findMany({ where: {}, orderBy: { createAt: "desc" } });
-      console.log(article.length);
       return {
         article
       };
@@ -56,5 +56,14 @@ export class ArticleService {
         where: { id }
       });
     });
+  }
+
+  async articleUpdate(createArticleDto: CreateArticleDto) {
+    console.log(createArticleDto)
+    await this.prismaService.article.update({
+      // @ts-ignore
+      where: { id: createArticleDto.id },
+      data: createArticleDto ,
+    })
   }
 }

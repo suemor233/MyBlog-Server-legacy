@@ -15,6 +15,10 @@ export class CreateArticleDto {
   @IsOptional()
   cover: string;
 
+  @ApiProperty({ description: "是否发布", example: false })
+  @IsOptional()
+  state: boolean;
+
   @ApiProperty({description: "文章标签", example: "javascript" })
   @IsOptional()
   tags: string;

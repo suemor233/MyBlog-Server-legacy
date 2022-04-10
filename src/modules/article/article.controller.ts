@@ -15,7 +15,10 @@ export class ArticleController {
     return this.articleService.create(createArticleDto);
   }
 
-
+  @Post('/update')
+  articleUpdate(@Body() createArticleDto: CreateArticleDto) {
+    return this.articleService.articleUpdate(createArticleDto);
+  }
 
   @Get()
   async findAll(@Query('pageNum') pageNum:string,@Query('pageSize')pageSize:string) {
@@ -24,6 +27,7 @@ export class ArticleController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    console.log(id)
     return this.articleService.findOne(id);
   }
 

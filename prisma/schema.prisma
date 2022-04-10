@@ -32,6 +32,7 @@ model article {
   cover    String   @default("https://suemor.oss-cn-beijing.aliyuncs.com/img/illust_54257893_20210819_092656.jpeg")
   tags     String   @default("")
   category String   @default("")
+  state    Boolean  @default(false)
   createAt DateTime @default(now()) @map("create_at")
   updateAt DateTime @updatedAt @map("update_at")
 }
